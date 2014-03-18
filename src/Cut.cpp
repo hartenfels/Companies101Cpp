@@ -3,16 +3,9 @@
 namespace companies101
 { using namespace std;
 
-void cut(FlatCompany& fc)
+void cut(Company& c)
 {
-    auto& es = fc.getMutableEmployees();
-    void (*efun)(Employee&) = cut;
-    for_each(es.begin(), es.end(), efun);
-}
-
-void cut(NestedCompany& nc)
-{
-    auto& ds = nc.getMutableDepartments();
+    auto& ds = c.getMutableDepartments();
     void (*dfun)(Department&) = cut;
     for_each(ds.begin(), ds.end(), dfun);
 }
@@ -29,7 +22,7 @@ void cut(Department& d)
 
 void cut(Employee& e)
 {
-    e.setSalary(e.getSalary() / 2.0);
+    e.setSalary(e.getSalary() / 2);
 }
 
 }

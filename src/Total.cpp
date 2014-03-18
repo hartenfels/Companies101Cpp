@@ -9,15 +9,9 @@ totalOp(const double& x, const T& y)
     return x + total(y);
 }
 
-double total(const FlatCompany& fc)
+double total(const Company& c)
 {
-    const auto& es = fc.getEmployees();
-    return accumulate(es.begin(), es.end(), 0.0, totalOp<Employee>);
-}
-
-double total(const NestedCompany& nc)
-{
-    const auto& ds = nc.getDepartments();
+    const auto& ds = c.getDepartments();
     return accumulate(ds.begin(), ds.end(), 0.0, totalOp<Department>);
 }
 

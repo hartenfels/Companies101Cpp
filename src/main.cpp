@@ -1,5 +1,4 @@
 #include "Cut.hpp"
-#include "FlatCompany.hpp"
 #include "Total.hpp"
 #include <iostream>
 
@@ -9,16 +8,7 @@ main(int, char**)
     using namespace std;
     using namespace companies101;
 
-    FlatCompany   fc("Acme Corporation", { 
-                         {"Craig", "Redmond"  , 123456},
-                         {"Erik" , "Utrecht"  , 12345 },
-                         {"Ralf" , "Koblenz"  , 12342 },
-                         {"Ray"  , "Redmond"  , 234567},
-                         {"Klaus", "Boston"   , 23456 },
-                         {"Karl" , "Riga"     , 2345  },
-                         {"Joe"  , "Wifi City", 2344  },
-                     });
-    NestedCompany nc =
+    Company c =
             {
                 "Acme Corporation",
                 {
@@ -56,9 +46,9 @@ main(int, char**)
                 }
             };
 
-    cout << total(nc) << '\n';
-    cut(nc);
-    cout << total(nc) << '\n';
+    cout << total(c) << '\n';
+    cut(c);
+    cout << total(c) << '\n';
 
     return 0;
 }

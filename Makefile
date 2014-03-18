@@ -11,14 +11,14 @@ clean_debug:
 
 
 # Build rules for debug
-bin/companies101: obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/FlatCompany.cpp.o obj/src/main.cpp.o obj/src/NestedCompany.cpp.o obj/src/Total.cpp.o | bin/
-	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -o bin/companies101 obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/FlatCompany.cpp.o obj/src/main.cpp.o obj/src/NestedCompany.cpp.o obj/src/Total.cpp.o 
-obj/src/Company.cpp.o: src/Company.cpp include/Company.hpp | obj/src/
+bin/companies101: obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/main.cpp.o obj/src/Total.cpp.o | bin/
+	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -o bin/companies101 obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/main.cpp.o obj/src/Total.cpp.o 
+obj/src/Company.cpp.o: src/Company.cpp include/Company.hpp include/Department.hpp \
+ include/Employee.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/Company.cpp -o obj/src/Company.cpp.o
 
-obj/src/Cut.cpp.o: src/Cut.cpp include/Cut.hpp include/Department.hpp \
- include/Employee.hpp include/FlatCompany.hpp include/Company.hpp \
- include/NestedCompany.hpp | obj/src/
+obj/src/Cut.cpp.o: src/Cut.cpp include/Cut.hpp include/Company.hpp \
+ include/Department.hpp include/Employee.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/Cut.cpp -o obj/src/Cut.cpp.o
 
 obj/src/Department.cpp.o: src/Department.cpp include/Department.hpp \
@@ -28,21 +28,12 @@ obj/src/Department.cpp.o: src/Department.cpp include/Department.hpp \
 obj/src/Employee.cpp.o: src/Employee.cpp include/Employee.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/Employee.cpp -o obj/src/Employee.cpp.o
 
-obj/src/FlatCompany.cpp.o: src/FlatCompany.cpp include/FlatCompany.hpp \
- include/Company.hpp include/Employee.hpp | obj/src/
-	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/FlatCompany.cpp -o obj/src/FlatCompany.cpp.o
-
-obj/src/main.cpp.o: src/main.cpp include/FlatCompany.hpp include/Company.hpp \
- include/Employee.hpp | obj/src/
+obj/src/main.cpp.o: src/main.cpp include/Cut.hpp include/Company.hpp \
+ include/Department.hpp include/Employee.hpp include/Total.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/main.cpp -o obj/src/main.cpp.o
 
-obj/src/NestedCompany.cpp.o: src/NestedCompany.cpp include/NestedCompany.hpp \
- include/Company.hpp include/Department.hpp include/Employee.hpp | obj/src/
-	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/NestedCompany.cpp -o obj/src/NestedCompany.cpp.o
-
-obj/src/Total.cpp.o: src/Total.cpp include/Total.hpp include/Department.hpp \
- include/Employee.hpp include/FlatCompany.hpp include/Company.hpp \
- include/NestedCompany.hpp | obj/src/
+obj/src/Total.cpp.o: src/Total.cpp include/Total.hpp include/Company.hpp \
+ include/Department.hpp include/Employee.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/Total.cpp -o obj/src/Total.cpp.o
 
 # Folders
