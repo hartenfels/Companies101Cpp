@@ -11,8 +11,8 @@ clean_debug:
 
 
 # Build rules for debug
-bin/companies101: obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/main.cpp.o obj/src/Total.cpp.o | bin/
-	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -o bin/companies101 obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/main.cpp.o obj/src/Total.cpp.o 
+bin/companies101: obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/main.cpp.o obj/src/Print.cpp.o obj/src/Total.cpp.o | bin/
+	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -o bin/companies101 obj/src/Company.cpp.o obj/src/Cut.cpp.o obj/src/Department.cpp.o obj/src/Employee.cpp.o obj/src/main.cpp.o obj/src/Print.cpp.o obj/src/Total.cpp.o 
 obj/src/Company.cpp.o: src/Company.cpp include/Company.hpp include/Department.hpp \
  include/Employee.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/Company.cpp -o obj/src/Company.cpp.o
@@ -31,6 +31,10 @@ obj/src/Employee.cpp.o: src/Employee.cpp include/Employee.hpp | obj/src/
 obj/src/main.cpp.o: src/main.cpp include/Cut.hpp include/Company.hpp \
  include/Department.hpp include/Employee.hpp include/Total.hpp | obj/src/
 	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/main.cpp -o obj/src/main.cpp.o
+
+obj/src/Print.cpp.o: src/Print.cpp include/Print.hpp include/Company.hpp \
+ include/Department.hpp include/Employee.hpp | obj/src/
+	g++ -std=c++11 -Wall -Wextra -fexceptions -pedantic -pedantic-errors -Iinclude -g -c src/Print.cpp -o obj/src/Print.cpp.o
 
 obj/src/Total.cpp.o: src/Total.cpp include/Total.hpp include/Company.hpp \
  include/Department.hpp include/Employee.hpp | obj/src/
