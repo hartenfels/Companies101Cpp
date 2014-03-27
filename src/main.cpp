@@ -29,7 +29,8 @@ main(int, char**)
                     }}
                 }}
             }};
-    print(c);
+    
+	print(c);
     cout << total(c) << '\n';
     cut(c);
     cout << total(c) << '\n';
