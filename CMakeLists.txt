@@ -20,7 +20,7 @@ include_directories(include)
 
 set(myGnuFlags "-Wall -Wextra -pedantic -pedantic-errors -fexceptions")
 
-if(CMAKE_COMPILER_IS_GNUC)
+if(CMAKE_COMPILER_IS_GNUCC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 ${myGnuFlags}")
 endif()
 
