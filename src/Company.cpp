@@ -1,43 +1,49 @@
 #include "Company.hpp"
-namespace companies101
-{ using namespace std;
+#include "MutateVisitor.hpp"
+#include "Visitor.hpp"
+namespace companies101 {
 
-Company::Company(const string& n, const vector<Department>& ds) :
+Company::Company(const std::string& n, const std::vector<Department>& ds) :
     name(n), departments(ds) {}
 
-Company::~Company() {}
 
-
-const string&
+const std::string&
 Company::getName() const
-{
-    return name;
-}
+{ return name; }
 
-const vector<Department>&
+const std::vector<Department>&
 Company::getDepartments() const
-{
-    return departments;
-}
+{ return departments; }
 
 
-vector<Department>&
+void
+Company::setName(const std::string& n)
+{ name = n; }
+
+void
+Company::setDepartments(const std::vector<Department>& ds)
+{ departments = ds; }
+
+
+std::vector<Department>&
 Company::getMutableDepartments()
-{
-    return departments;
-}
+{ return departments; }
 
 
 void
-Company::setName(const string& n)
+Company::accept(const Visitor& visitor) const
 {
-    name = n;
+    visitor.enter(*this);
+    for (const Department& d : getDepartments()) d.accept(visitor);
+    visitor.exit (*this);
 }
 
 void
-Company::setDepartments(const vector<Department>& ds)
+Company::accept(const MutateVisitor& visitor)
 {
-    departments = ds;
+    visitor.enter(*this);
+    for (Department& d : getMutableDepartments()) d.accept(visitor);
+    visitor.exit (*this);
 }
 
 }

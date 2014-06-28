@@ -3,27 +3,29 @@
 #include "Employee.hpp"
 #include <string>
 #include <vector>
-namespace companies101
-{
+namespace companies101 {
+class Visitor;
+class MutateVisitor;
 
-class Department
-{
+class Department {
 public:
     Department(const std::string            & name        = "",
                const std::vector<Employee>  & employees   = {},
                const std::vector<Department>& departments = {});
-    virtual ~Department();
 
-    virtual const std::string            & getName       () const;
-    virtual const std::vector<Employee>  & getEmployees  () const;
-    virtual const std::vector<Department>& getDepartments() const;
+    const std::string            & getName       () const;
+    const std::vector<Employee>  & getEmployees  () const;
+    const std::vector<Department>& getDepartments() const;
 
-    virtual std::vector<Employee>  & getMutableEmployees  ();
-    virtual std::vector<Department>& getMutableDepartments();
+    void setName       (const std::string            & name);
+    void setEmployees  (const std::vector<Employee>  & employees);
+    void setDepartments(const std::vector<Department>& departments);
 
-    virtual void setName       (const std::string            & name);
-    virtual void setEmployees  (const std::vector<Employee>  & employees);
-    virtual void setDepartments(const std::vector<Department>& departments);
+    std::vector<Employee>  & getMutableEmployees  ();
+    std::vector<Department>& getMutableDepartments();
+
+    void accept(const Visitor      & visitor) const;
+    void accept(const MutateVisitor& visitor);
 
 private:
     std::string             name;

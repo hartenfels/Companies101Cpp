@@ -1,62 +1,64 @@
 #include "Department.hpp"
-namespace companies101
-{ using namespace std;
+#include "MutateVisitor.hpp"
+#include "Visitor.hpp"
+namespace companies101 {
 
-Department::Department(const string& n, const vector<Employee>& es,
-        const vector<Department>& ds) :
+Department::Department(const std::string& n, const std::vector<Employee>& es,
+                       const std::vector<Department>& ds) :
     name(n), employees(es), departments(ds) {}
-
-Department::~Department() {}
 
 
 const std::string&
 Department::getName() const
-{
-    return name;
-}
+{ return name; }
 
-const vector<Employee>&
+const std::vector<Employee>&
 Department::getEmployees() const
-{
-    return employees;
-}
+{ return employees; }
 
-const vector<Department>&
+const std::vector<Department>&
 Department::getDepartments() const
-{
-    return departments;
-}
+{ return departments; }
 
 
-vector<Employee>&
+void
+Department::setName(const std::string& n)
+{ name = n; }
+
+void
+Department::setEmployees(const std::vector<Employee>& es)
+{ employees = es; }
+
+void
+Department::setDepartments(const std::vector<Department>& ds)
+{ departments = ds; }
+
+
+std::vector<Employee>&
 Department::getMutableEmployees()
-{
-    return employees;
-}
+{ return employees; }
 
-vector<Department>&
+std::vector<Department>&
 Department::getMutableDepartments()
-{
-    return departments;
-}
+{ return departments; }
 
 
 void
-Department::setName(const string& n)
+Department::accept(const Visitor& visitor) const
 {
-    name = n;
+    visitor.enter(*this);
+    for (const Employee  & e : getEmployees  ()) e.accept(visitor);
+    for (const Department& d : getDepartments()) d.accept(visitor);
+    visitor.exit (*this);
 }
 
 void
-Department::setEmployees(const vector<Employee>& es)
+Department::accept(const MutateVisitor& visitor)
 {
-    employees = es;
-}
-
-void
-Department::setDepartments(const vector<Department>& ds)
-{
-    departments = ds;
+    visitor.enter(*this);
+    for (Employee  & e : getMutableEmployees  ()) e.accept(visitor);
+    for (Department& d : getMutableDepartments()) d.accept(visitor);
+    visitor.exit (*this);
 }
 
 }

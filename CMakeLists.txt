@@ -2,21 +2,18 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
 
-project("Contribution:Cpp")
-
-set(mySourceFiles
-	src/Company.cpp
-    src/Cut.cpp
+set(sourceFiles
+    src/Company.cpp
     src/Department.cpp
     src/Employee.cpp
-    src/Print.cpp
-    src/Total.cpp
+    src/MutateVisitor.cpp
+    src/Visitor.cpp
 )
 
-add_executable(companies101 src/main.cpp ${mySourceFiles})
 
+project("Contribution:Cpp")
+add_executable(companies101 src/main.cpp ${sourceFiles})
 include_directories(include)
-
 
 set(myGnuFlags "-Wall -Wextra -pedantic -pedantic-errors -fexceptions")
 

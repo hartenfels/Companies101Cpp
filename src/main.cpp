@@ -1,19 +1,17 @@
-#include "Cut.hpp"
-#include "Print.hpp"
-#include "Total.hpp"
+#include "Operations.hpp"
 #include <iostream>
 
 int
-main(int, char**)
+main()
 {
-    using namespace std;
     using namespace companies101;
 
     Company c =
             {"Acme Corporation", {
                 {"Research", {
                     {"Craig", "Redmond", 123456},
-                    {"Erik" , "Utrecht", 12345 },
+                    {"Erik" , "U>
+trecht", 12345 },
                     {"Ralf" , "Koblenz", 1234  },
                 }},
                 {"Development", {
@@ -31,9 +29,9 @@ main(int, char**)
             }};
     
 	print(c);
-    cout << total(c) << '\n';
+    std::cout << total(c) << '\n';
     cut(c);
-    cout << total(c) << '\n';
+    std::cout << total(c) << '\n';
 
     return 0;
 }
