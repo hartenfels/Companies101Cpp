@@ -3,7 +3,7 @@ set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
 project("Contribution:Cpp")
 
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED unit_test_framework)
 
 set(sourceFiles
     src/Company.cpp
@@ -15,9 +15,11 @@ set(sourceFiles
     src/Visitor.cpp
 )
 
-add_executable(companies101 src/main.cpp ${sourceFiles})
+add_executable(companies101 src/test.cpp ${sourceFiles})
 include_directories(include ${Boost_INCLUDE_DIRS})
 target_link_libraries(companies101 ${Boost_LIBRARIES})
+
+file(COPY sample.json DESTINATION ${CMAKE_BINARY_DIR})
 
 set(myGnuFlags "-Wall -Wextra -pedantic -pedantic-errors -fexceptions")
 

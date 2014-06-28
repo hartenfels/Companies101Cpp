@@ -2,13 +2,15 @@
 namespace companies101 {
 using boost::property_tree::ptree;
 
-template<typename T> static ptree
-unparseArray(const T& elements)
+template<typename T> static void
+unparseElements(ptree& tree, const std::string& key, const T& elements)
 {
-    ptree tree;
-    for (const auto& elem : elements)
-       tree.push_back({"", unparse(elem)}); 
-    return tree;
+    if (elements.size()) {
+        ptree list;
+        for (const auto& elem : elements)
+           list.push_back({"", unparse(elem)});
+        tree.add_child(key, list);
+    }
 }
 
 ptree
@@ -16,7 +18,7 @@ unparse(const Company& company)
 {
     ptree tree;
     tree.put("name", company.getName());
-    tree.add_child("departments", unparseArray(company.getDepartments()));
+    unparseElements(tree, "departments", company.getDepartments());
     return tree;
 }
 
@@ -25,8 +27,8 @@ unparse(const Department& department)
 {
     ptree tree;
     tree.put("name", department.getName());
-    tree.add_child("departments", unparseArray(department.getDepartments()));
-    tree.add_child("employees",   unparseArray(department.getEmployees()));
+    unparseElements(tree, "departments", department.getDepartments());
+    unparseElements(tree, "employees",   department.getEmployees  ());
     return tree;
 }
 
@@ -45,7 +47,7 @@ Company
 parseCompany(const ptree& tree)
 {
     std::vector<Department> depts;
-    for (const auto& child : tree.get_child("departments"))
+    for (const auto& child : tree.get_child("departments", {}))
         depts.push_back(parseDepartment(child.second));
 
     return {tree.get<std::string>("name"), depts};
@@ -55,11 +57,11 @@ Department
 parseDepartment(const ptree& tree)
 {
     std::vector<Employee> empls;
-    for (const auto& child : tree.get_child("employees"))
+    for (const auto& child : tree.get_child("employees", {}))
         empls.push_back(parseEmployee(child.second));
 
     std::vector<Department> depts;
-    for (const auto& child : tree.get_child("departments"))
+    for (const auto& child : tree.get_child("departments", {}))
         depts.push_back(parseDepartment(child.second));
 
     return {tree.get<std::string>("name"), empls, depts};

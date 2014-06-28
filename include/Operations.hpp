@@ -25,10 +25,10 @@ unsigned int depth(const T& t)
 {
     unsigned int max = 0, cur = 0;
     t.accept(Visitor()
-        .onEnter([&](const Department& d){
+        .onEnter([&](const Department&){
             ++cur;
         })
-        .onExit ([&](const Department& d){
+        .onExit ([&](const Department&){
             if (cur > max) max = cur;
             --cur;
         }));
