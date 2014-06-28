@@ -10,8 +10,7 @@ main()
             {"Acme Corporation", {
                 {"Research", {
                     {"Craig", "Redmond", 123456},
-                    {"Erik" , "U>
-trecht", 12345 },
+                    {"Erik" , "Utrecht", 12345 },
                     {"Ralf" , "Koblenz", 1234  },
                 }},
                 {"Development", {
