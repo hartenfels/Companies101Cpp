@@ -1,5 +1,8 @@
+#include "Equal.hpp"
 #include "Operations.hpp"
+#include "Persistence.hpp"
 #include <iostream>
+#include <boost/property_tree/json_parser.hpp>
 
 int
 main()
@@ -28,6 +31,13 @@ main()
             }};
     
 	print(c);
+
+    auto t = unparse(c);
+    boost::property_tree::json_parser::write_json("sample.json", t);
+    Company c2 = parseCompany(t);
+    print(c2);
+    std::cout << (c == c2) << '\n';
+
     std::cout << total(c) << '\n';
     cut(c);
     std::cout << total(c) << '\n';

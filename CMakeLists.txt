@@ -1,19 +1,23 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
+project("Contribution:Cpp")
+
+find_package(Boost REQUIRED)
 
 set(sourceFiles
     src/Company.cpp
     src/Department.cpp
     src/Employee.cpp
+    src/Equal.cpp
     src/MutateVisitor.cpp
+    src/Persistence.cpp
     src/Visitor.cpp
 )
 
-
-project("Contribution:Cpp")
 add_executable(companies101 src/main.cpp ${sourceFiles})
-include_directories(include)
+include_directories(include ${Boost_INCLUDE_DIRS})
+target_link_libraries(companies101 ${Boost_LIBRARIES})
 
 set(myGnuFlags "-Wall -Wextra -pedantic -pedantic-errors -fexceptions")
 
