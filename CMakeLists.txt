@@ -11,6 +11,7 @@ set(sourceFiles
     src/Employee.cpp
     src/Equal.cpp
     src/MutateVisitor.cpp
+    src/Operations.cpp
     src/Persistence.cpp
     src/Visitor.cpp
 )

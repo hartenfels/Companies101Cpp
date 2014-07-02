@@ -1,13 +1,14 @@
 #ifndef COMPANIES101_DEPARTMENT_HPP
 #define COMPANIES101_DEPARTMENT_HPP
 #include "Employee.hpp"
+#include "Host.hpp"
 #include <string>
 #include <vector>
 namespace companies101 {
 class Visitor;
 class MutateVisitor;
 
-class Department {
+class Department : public Host {
 public:
     Department(const std::string            & name        = "",
                const std::vector<Employee>  & employees   = {},
@@ -24,8 +25,8 @@ public:
     std::vector<Employee>  & getMutableEmployees  ();
     std::vector<Department>& getMutableDepartments();
 
-    void accept(const Visitor      & visitor) const;
-    void accept(const MutateVisitor& visitor);
+    void accept(const Visitor      & visitor) const override;
+    void accept(const MutateVisitor& visitor)       override;
 
 private:
     std::string             name;

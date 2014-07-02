@@ -1,11 +1,12 @@
 #ifndef COMPANIES101_EMPLOYEE_HPP
 #define COMPANIES101_EMPLOYEE_HPP
+#include "Host.hpp"
 #include <string>
 namespace companies101 {
 class Visitor;
 class MutateVisitor;
 
-class Employee {
+class Employee : public Host {
 public:
     Employee(const std::string& name    = "",
              const std::string& address = "",
@@ -19,8 +20,8 @@ public:
     void setAddress(const std::string& address);
     void setSalary (const double     & salary);
 
-    void accept(const Visitor      & visitor) const;
-    void accept(const MutateVisitor& visitor);
+    void accept(const Visitor      & visitor) const override;
+    void accept(const MutateVisitor& visitor)       override;
 
 private:
     std::string name;
