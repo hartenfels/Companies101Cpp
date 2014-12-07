@@ -6,11 +6,10 @@ class MutateVisitor;
 
 class Host {
 public:
-	virtual ~Host()                                         = default;
+    virtual ~Host()                                         = default;
     virtual void accept(const Visitor      & visitor) const = 0;
     virtual void accept(const MutateVisitor& visitor)       = 0;
 };
 
 }
 #endif
-

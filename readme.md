@@ -22,4 +22,3 @@ Just run `./companies101` after building.
 CMake comes with support for Visual Studio and the contribution is written in standard C++11, so in theory it should run on Windows with no modification. How exactly one builds anything in Visual Studio and what parts of the C++ standard its compiler actually supports has remained a mystery to me though, so I cannot provide any further instructions.
 
 There is also MinGW and Cygwin to emulate a Unix environment, in which case you can follow the Unix instructions above.
-
